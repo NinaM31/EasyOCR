@@ -174,7 +174,7 @@ def get_recognizer(recog_network, network_params, character,\
         model.load_state_dict(new_state_dict)
         if quantize:
             try:
-                torch.quantization.quantize_dynamic(model, dtype=torch.qint8, inplace=True)
+                torch.quantization.quantize_dynamic(model, {nn.LSTM, nn.Linear}, dtype=torch.qint8, inplace=True)
             except:
                 pass
     else:
